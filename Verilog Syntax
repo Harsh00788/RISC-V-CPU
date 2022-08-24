@@ -1,1 +1,22 @@
+Case sensitive.
+Sized Numbers EX-2'b10 here 2 is size,binary is the type and 10 is the number
+Int a = 'h3AD4 here integer is declared so it automatically has 32 bits size.
+Negative numbers are declared with a minus sign should be at the start.
+Strings are declared with double quotes and cannot be multiple line .
+A Simple D Flip Flop Code-
+module dff (input a ,clk,rstn;
+            output reg dd;)
+   always@(posedge clk) begin
+   if (!rstn)
+   q <= 0;
+   
+   else 
+   
+   q <= d;
+   
+end
 
+endmodule
+   
+   
+   
