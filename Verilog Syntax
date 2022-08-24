@@ -17,6 +17,22 @@ module dff (input a ,clk,rstn;
 end
 
 endmodule
-   
-   
+
+AND Gate-
+
+   module AND_2(output Y, input A, B);
+    and(Y, A, B); 
+endmodule
+  
+OR Gate-
+ module OR_2(output Y, input A, B);
+    or(Y, A, B); 
+endmodule
+ 
+XOR Gate-
+module XOR_2_gate_level(output Y, input A, B);
+    xor (Y, A, B); 
+endmodule
+  
+
    
