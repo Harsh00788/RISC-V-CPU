@@ -6,7 +6,7 @@ Register file: Register file contains the local storage or registers the program
 Register File Write: The registers in the register file can also be written to store the output of the register.
 DMem: Our test program executes entirely out of the register file and does not require a data memory (DMem). But no CPU is complete without one. The DMem is written to by store instructions and read from by load instructions ~~straight from the edex site
 
-
+PC LOGIC:
 PC Logic
 The PC is a byte address, only referencing the first byte of the address where the instruction is stored in IMem. Each instruction is 4 bytes, so a change in PC is equivalent to 4 bytes of increment in IMem. The PC is reset by the reset signal.
 Fetch
@@ -58,3 +58,18 @@ SystemVerilog gives us an operator that makes this comparison a little simpler:
 $is_u_instr = $instr[6:2] ==? 5'b0x101;
 
 The ==? operator above allows some bits to be excluded from the comparison by specifying them as "x" (referred to as don’t-care).
+
+IMEM:
+We will implement our IMem by instantiating a Verilog macro. This macro accepts a byte address as input, and produces the 32-bit read data as output. The macro can be instantiated, for example, as:
+
+`READONLY_MEM($addr, $$read_data[31:0])
+
+Verilog macro instantiation is preceded by a back-tick (not to be confused with a single quote).
+
+In expressions like this that do not syntactically differentiate assigned signals from consumed signals, it is necessary to identify assigned signals using a "$$" prefix. And, as always, an assigned signal declares its bit range. Thus, $$read_data[31:0] is used above.
+
+This macro is simplified in several ways versus what you would typically see for an array macro:
+
+There is no way to write to our array. The program specified in the template is magically populated into this array for you.
+Typically, an array would have a read enable input as well. This read enable would indicate, each cycle, whether to perform a read. Our array will always read, and we are not concerned with the power savings a read enable could offer.
+Typically, a memory structure like our IMem would be implemented using a physical structure called static random access memory, or SRAM. The address would be provided in one clock cycle, and the data would be read out in the next cycle. Our entire CPU, however, will execute within a single clock cycle. Our array provides its output data on the same clock cycle as the input address. Our macro would result in an implementation using flip-flops that would be far less optimal than SRAM
