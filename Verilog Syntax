@@ -33,6 +33,49 @@ XOR Gate-
 module XOR_2_gate_level(output Y, input A, B);
     xor (Y, A, B); 
 endmodule
-  
+
+Different Data Types-
+Nets- Equivalent to connedcting hardware components
+Wires-Can be vectors as well
+integer-a 32 bit general purpose data type
+time-used to assign simulation time
+realtime-stores simulation time as a float type.
+
+net is 1 bit wide if a range is not specified that is a scalar
+a vector is defined as -
+wire [7:0] n0
+where 7 is the most significsnt bit and 0 is the least significant bit
+various data members can be accessed by the array indices 
+for example-
+in the above example -
+n0[0]=1;
+n[0]=2;
+and so forth.
+
+string uses-
+module test
+reg [8*11:0] str1;
+reg[8*5:0] str2;
+reg[8*21:0] str3;
+
+initial begin
+str1 = "hello world";
+str2 = "hello world";
+str3 = "hello world";
+
+$display("str1 = %s",str1);
+$display("str2 = %s",str2);
+$display("str3 = %s",str3);
+
+in secon d case only world is printed rest is truncated and in the third case "      hello world" is printed as the leftmost spaces are filled as spaces.
+ARRAYS-
+wire y1[3:0] where y has depth of 4 amd 1 bit wide each 
+wire [15:0] y1 [3:0] where y1 has 16 bit wide and depth of 4
+wire [15:0] y1 [3:0][0:7] where y1 is a 2d array
+
+PORTS-
+There are three types of ports-
+inout,input,output;
+signed is a declaration we use for signed representation of a signal
 
    
