@@ -78,4 +78,53 @@ There are three types of ports-
 inout,input,output;
 signed is a declaration we use for signed representation of a signal
 
+ASSIGN:-
+assign statements are used to assign a certain value continously to a certain wire that is defined in this statement
+syntax-
+assign *exp*=[drive strength][delay]<expression of different signals or const value>
+
+VERILOG OPERATORS-
+Operator	Description
+a + b	a plus b
+a - b	a minus b
+a * b	a multiplied by b
+a / b	a divided by b
+a % b	a modulo b
+a ** b	a to the power of b
+
+Operator	Description
+a < b	a less than b
+a > b	a greater than b
+a <= b	a less than or equal to b
+a >= b	a greater than or equal to b
+
+Operator	Description
+a === b	a equal to b, including x and z
+a !== b	a not equal to b, including x and z
+a == b	a equal to b, result can be unknown
+a != b	a not equal to b, result can be unknown
+
+Operator	Description
+a && b	evaluates to true if a and b are true
+a || b	evaluates to true if a or b are true
+!a	Converts non-zero value to zero, and vice versa
+
+VERILOG CONCATENATION:-
+This property is used to club two variables or nets.
+Replication is use4d if a statment is to be repeated seversal times
+for example-
+wire a;
+wire [6:0] res;
+assign wire = {7[a]};
+
+always is used for procedural coding and is used for a certain condition
+always must be defined with a sensitivity list i.e. the variables which are changed and to execute the always block when the said variables change.
+if there is no variables defined then this will run conti throughout the entire simulation and therefore simulation wont run and hang.
+
+COMBO LOGIC-
+module combo( input a,b,c,d
+output e)
+always@(a or b or c or d or e)begin
+e=((a&b) | (c^d) & e);
+
    
